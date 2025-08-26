@@ -1,0 +1,86 @@
+#include <stdio.h>
+
+#define TAMANHO 10
+#define NAVIO 3
+#define TAM_NAVIO 3
+
+// Função para verificar se é possível posicionar um navio nas coordenadas dadas
+int pode_posicionar(int tabuleiro[TAMANHO][TAMANHO], int linha, int coluna, int direcao, char orientacao) {
+    for (int i = 0; i < TAM_NAVIO; i++) {
+        int l = linha;
+        int c = coluna;
+
+        if (orientacao == 'H') c += i;                  // Horizontal
+        else if (orientacao == 'V') l += i;             // Vertical
+        else if (orientacao == 'D') {                   // Diagonal principal
+            l += i;
+            c += i;
+        }
+        else if (orientacao == 'E') {                   // Diagonal secundária
+            l += i;
+            c -= i;
+        }
+
+        if (l < 0 || l >= TAMANHO || c < 0 || c >= TAMANHO) return 0;  // Fora dos limites
+        if (tabuleiro[l][c] != 0) return 0;                            // Sobreposição
+    }
+    return 1;
+}
+
+// Função para posicionar navio
+void posicionar_navio(int tabuleiro[TAMANHO][TAMANHO], int linha, int coluna, char orientacao) {
+    for (int i = 0; i < TAM_NAVIO; i++) {
+        if (orientacao == 'H') tabuleiro[linha][coluna + i] = NAVIO;
+        else if (orientacao == 'V') tabuleiro[linha + i][coluna] = NAVIO;
+        else if (orientacao == 'D') tabuleiro[linha + i][coluna + i] = NAVIO;
+        else if (orientacao == 'E') tabuleiro[linha + i][coluna - i] = NAVIO;
+    }
+}
+
+// Função para imprimir o tabuleiro
+void imprimir_tabuleiro(int tabuleiro[TAMANHO][TAMANHO]) {
+    printf("  ");
+    for (int i = 0; i < TAMANHO; i++) {
+        printf("%d ", i);
+    }
+    printf("\n");
+
+    for (int i = 0; i < TAMANHO; i++) {
+        printf("%d ", i);
+        for (int j = 0; j < TAMANHO; j++) {
+            printf("%d ", tabuleiro[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int tabuleiro[TAMANHO][TAMANHO] = {0}; // Inicializa o tabuleiro com água (0)
+
+    // Posicionamento dos 4 navios com coordenadas fixas
+    // 1. Horizontal (linha 0, coluna 0)
+    if (pode_posicionar(tabuleiro, 0, 0, TAM_NAVIO, 'H')) {
+        posicionar_navio(tabuleiro, 0, 0, 'H');
+    }
+
+    // 2. Vertical (linha 2, coluna 5)
+    if (pode_posicionar(tabuleiro, 2, 5, TAM_NAVIO, 'V')) {
+        posicionar_navio(tabuleiro, 2, 5, 'V');
+    }
+
+    // 3. Diagonal principal (linha 5, coluna 5)
+    if (pode_posicionar(tabuleiro, 5, 5, TAM_NAVIO, 'D')) {
+        posicionar_navio(tabuleiro, 5, 5, 'D');
+    }
+
+    // 4. Diagonal secundária (linha 3, coluna 7)
+    if (pode_posicionar(tabuleiro, 3, 7, TAM_NAVIO, 'E')) {
+        posicionar_navio(tabuleiro, 3, 7, 'E');
+    }
+
+    // Exibe o tabuleiro final
+    printf("Tabuleiro Final:\n");
+    imprimir_tabuleiro(tabuleiro);
+
+    return 0;
+}
