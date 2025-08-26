@@ -1,0 +1,117 @@
+#include <stdio.h> // Biblioteca para funções de entrada e saída (printf, scanf)
+
+/*
+ ============================================================================
+ Desafio: Criando as Cartas do Super Trunfo
+ Nível 1: Cadastro e Exibição de Cartas
+ Descrição: Este programa solicita ao usuário os dados de duas cartas
+            (cidades), armazena em variáveis e exibe as informações
+            na tela de forma organizada.
+ ============================================================================
+*/
+
+int main() {
+
+    // --- Declaração de Variáveis para a Carta 1 ---
+    // Nomes de variáveis significativos para facilitar a compreensão.
+    char  A_1;
+    char  A01[5];      // Array para o código (ex: "A01") mais o caractere nulo '\0'
+    char  nomeCidade_1[50];      // Array para o nome da cidade, com espaço para nomes longos
+    int   populacao_1;
+    float area_1;
+    float pib_1;
+    int   pontosTuristicos_1;
+
+    // --- Declaração de Variáveis para a Carta 2 ---
+    char  estado_2;
+    char  codigoCarta_2[5];
+    char  nomeCidade_2[50];
+    int   populacao_2;
+    float area_2;
+    float pib_2;
+    int   pontosTuristicos_2;
+
+
+    // ============================================================================
+    // SEÇÃO DE ENTRADA DE DADOS
+    // ============================================================================
+
+    // --- Coleta de dados para a Carta 1 ---
+    printf("--- Cadastro da Carta 1 ---\n");
+
+    printf("Digite a letra do Estado (A-H): ");
+    scanf(" %c", &estado_1); // O espaço antes de %c é importante para limpar o buffer do teclado
+
+    printf("Digite o Código da Carta (ex: A01): ");
+    scanf("%s", codigoCarta_1);
+
+    printf("Digite o Nome da Cidade: ");
+    // O formato %[^\n] lê a string até o 'Enter', permitindo nomes com espaços (ex: São Paulo)
+    scanf(" %[^\n]", nomeCidade_1);
+
+    printf("Digite a População: ");
+    scanf("%d", &populacao_1);
+
+    printf("Digite a Área (em km²): ");
+    scanf("%f", &area_1);
+
+    printf("Digite o PIB (em bilhões): ");
+    scanf("%f", &pib_1);
+
+    printf("Digite o Número de Pontos Turísticos: ");
+    scanf("%d", &pontosTuristicos_1);
+
+    // --- Coleta de dados para a Carta 2 ---
+    printf("\n--- Cadastro da Carta 2 ---\n");
+
+    printf("Digite a letra do Estado (A-H): ");
+    scanf(" %c", &estado_2);
+
+    printf("Digite o Código da Carta (ex: B02): ");
+    scanf("%s", codigoCarta_2);
+
+    printf("Digite o Nome da Cidade: ");
+    scanf(" %[^\n]", nomeCidade_2);
+
+    printf("Digite a População: ");
+    scanf("%d", &populacao_2);
+
+    printf("Digite a Área (em km²): ");
+    scanf("%f", &area_2);
+
+    printf("Digite o PIB (em bilhões): ");
+    scanf("%f", &pib_2);
+
+    printf("Digite o Número de Pontos Turísticos: ");
+    scanf("%d", &pontosTuristicos_2);
+
+
+    // ============================================================================
+    // SEÇÃO DE EXIBIÇÃO DE DADOS
+    // ============================================================================
+
+    printf("\n\n--- Cartas Cadastradas ---\n");
+
+    // --- Exibição dos dados da Carta 1 ---
+    printf("\nCarta 1:\n");
+    printf("Estado: %c\n", estado_1);
+    printf("Código: %s\n", codigoCarta_1);
+    printf("Nome da Cidade: %s\n", nomeCidade_1);
+    printf("População: %d\n", populacao_1);
+    // Usamos "%.2f" para formatar os números float com duas casas decimais, como no exemplo.
+    printf("Área: %.2f km²\n", area_1);
+    printf("PIB: %.2f bilhões de reais\n", pib_1);
+    printf("Número de Pontos Turísticos: %d\n", pontosTuristicos_1);
+
+    // --- Exibição dos dados da Carta 2 ---
+    printf("\nCarta 2:\n");
+    printf("Estado: %c\n", estado_2);
+    printf("Código: %s\n", codigoCarta_2);
+    printf("Nome da Cidade: %s\n", nomeCidade_2);
+    printf("População: %d\n", populacao_2);
+    printf("Área: %.2f km²\n", area_2);
+    printf("PIB: %.2f bilhões de reais\n", pib_2);
+    printf("Número de Pontos Turísticos: %d\n", pontosTuristicos_2);
+
+    return 0; // Indica ao sistema operacional que o programa terminou com sucesso
+}
