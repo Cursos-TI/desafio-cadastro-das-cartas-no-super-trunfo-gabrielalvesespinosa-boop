@@ -1,0 +1,84 @@
+#include <stdio.h>
+
+// ----------------------
+// Funções recursivas
+// ----------------------
+
+// Torre: move-se em linha reta (Direita)
+void moverTorre(int casas, int atual) {
+    if (atual > casas) return; // Caso base
+    printf("Direita (casa %d)\n", atual);
+    moverTorre(casas, atual + 1); // Chamada recursiva
+}
+
+// Rainha: move-se em linha reta (Esquerda)
+void moverRainha(int casas, int atual) {
+    if (atual > casas) return; // Caso base
+    printf("Esquerda (casa %d)\n", atual);
+    moverRainha(casas, atual + 1); // Chamada recursiva
+}
+
+// Bispo: movimento diagonal com recursividade + loops aninhados
+void moverBispo(int casas, int atual) {
+    if (atual > casas) return; // Caso base
+
+    // Loop externo → movimento vertical (Cima)
+    for (int v = 1; v <= 1; v++) {
+        // Loop interno → movimento horizontal (Direita)
+        for (int h = 1; h <= 1; h++) {
+            printf("Cima, Direita (casa %d)\n", atual);
+        }
+    }
+
+    moverBispo(casas, atual + 1); // Chamada recursiva
+}
+
+// ----------------------
+// Cavalo: loops complexos
+// ----------------------
+void moverCavalo() {
+    printf("Movimento do Cavalo:\n");
+
+    // Movimento em "L": duas casas para cima e uma para direita
+    // Usando loops aninhados e controle com break/continue
+    for (int vertical = 1; vertical <= 2; vertical++) {
+        if (vertical == 2) {
+            printf("Cima (casa %d)\n", vertical);
+            continue; // vai direto para imprimir a segunda casa
+        }
+        printf("Cima (casa %d)\n", vertical);
+    }
+
+    // Movimento horizontal (1 casa para a direita)
+    for (int horizontal = 1; horizontal <= 2; horizontal++) {
+        if (horizontal != 1) break; // imprime só uma vez
+        printf("Direita (casa final)\n");
+    }
+}
+
+int main() {
+    // Quantidade de movimentos
+    int movimentoTorre = 5;
+    int movimentoBispo = 5;
+    int movimentoRainha = 8;
+
+    printf("===== Movimentos do Xadrez =====\n\n");
+
+    // Torre
+    printf("Movimento da Torre:\n");
+    moverTorre(movimentoTorre, 1);
+
+    // Bispo
+    printf("\nMovimento do Bispo:\n");
+    moverBispo(movimentoBispo, 1);
+
+    // Rainha
+    printf("\nMovimento da Rainha:\n");
+    moverRainha(movimentoRainha, 1);
+
+    // Cavalo
+    printf("\n");
+    moverCavalo();
+
+    return 0;
+}
