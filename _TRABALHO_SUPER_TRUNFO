@@ -12,7 +12,7 @@
 
 int main() {
 
-    // --- Declaração de Variáveis para a Carta 1 ---
+   // --- Declaração de Variáveis para a Carta 1 ---
     // Nomes de variáveis significativos para facilitar a compreensão.
     char  A_1;
     char  A01[5];      // Array para o código (ex: "A01") mais o caractere nulo '\0'
